@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 // import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button, Container, Group, Title, Card, Text, useMantineColorScheme, Input, TextInput, rem } from '@mantine/core';
-import { Trash, MoonStars, Sun, Edit } from 'tabler-icons-react';
+import { Trash, MoonStars, Sun, Eye } from 'tabler-icons-react';
 // import { IconExclamationCircle } from '@tabler/icons-react';
 import styles from './page.module.css'
 
@@ -152,7 +152,7 @@ const Page = () => {
                                             }}>
 
                                             {/* //  href={`/todoList/${i.title}`}   */}
-                                            <Edit
+                                            <Eye
                                                 size={28}
                                                 strokeWidth={1.5}
                                                 color={colorScheme === "light" ? 'green' : "#ced4da"}
