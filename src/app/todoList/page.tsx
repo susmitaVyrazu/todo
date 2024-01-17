@@ -8,7 +8,12 @@ import { Trash, MoonStars, Sun, Edit } from 'tabler-icons-react';
 import styles from './page.module.css'
 
 const Page = () => {
-    let allTasks = localStorage.getItem("tasks");
+    let allTasks;
+    useEffect(() => {
+        allTasks = localStorage.getItem("tasks");
+    }, [])
+    
+   
     if (allTasks) {
         allTasks = JSON.parse(allTasks);
     }
