@@ -9,14 +9,17 @@ import styles from './page.module.css'
 
 const Page = () => {
     let allTasks;
-    useEffect(() => {
+    if (typeof window !== "undefined") {
         allTasks = localStorage.getItem("tasks");
-    }, [])
-    
-   
-    if (allTasks) {
-        allTasks = JSON.parse(allTasks);
-    }
+        if (allTasks) {
+            allTasks = JSON.parse(allTasks);
+           
+        }
+      }
+     
+  
+
+
     const [data, setData] = useState<any>(allTasks ||
         [
             { id: 0, title: "Study", summary: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis incidunt unde, porro quod quaerat ut, rem minima esse a optio, accusamus soluta facilis? Id voluptates voluptatibus nesciunt, asperiores repudiandae consequuntur quasi fuga. Nemo repudiandae quis ab dicta at! Ipsum, sint." },
@@ -125,42 +128,42 @@ const Page = () => {
 
                     {data.length ? data.map((i: any, j: number) => {
                         return (
-                            
-                                <Card key={j} shadow="sm" padding="lg" my={20} mt="md">
-                                    <Group justify="space-between">
-                                        <Text size="lg" className={styles.title}>
-                                            {i.title}
-                                        </Text>
-                                        <Group  align="center">
-                                            <Trash
-                                                id={i.id} onClick={(event: any) => deleteTask(event)}
-                                                size={28}
-                                                className="deletebtn"
-                                                strokeWidth={1.5}
-                                                color={colorScheme === "light" ? 'maroon' : "#ced4da"}
-                                            />
-                                            <Link
-                                                href={{
-                                                    pathname: '/todoList/${i.title}',
-                                                    query: {
-                                                        title: i.title,
-                                                        summary: i.summary
-                                                    }
-                                                }}>
 
-                                                {/* //  href={`/todoList/${i.title}`}   */}
-                                                <Edit
-                                                    size={28}
-                                                    strokeWidth={1.5}
-                                                    color={colorScheme === "light" ? 'green' : "#ced4da"}
-                                                /></Link>
-                                        </Group>
-                                    </Group>
-                                    <Text mt={20} size="sm">
-                                        {i.summary}
+                            <Card key={j} shadow="sm" padding="lg" my={20} mt="md">
+                                <Group justify="space-between">
+                                    <Text size="lg" className={styles.title}>
+                                        {i.title}
                                     </Text>
-                                </Card>
-                            
+                                    <Group align="center">
+                                        <Trash
+                                            id={i.id} onClick={(event: any) => deleteTask(event)}
+                                            size={28}
+                                            className="deletebtn"
+                                            strokeWidth={1.5}
+                                            color={colorScheme === "light" ? 'maroon' : "#ced4da"}
+                                        />
+                                        <Link
+                                            href={{
+                                                pathname: '/todoList/${i.title}',
+                                                query: {
+                                                    title: i.title,
+                                                    summary: i.summary
+                                                }
+                                            }}>
+
+                                            {/* //  href={`/todoList/${i.title}`}   */}
+                                            <Edit
+                                                size={28}
+                                                strokeWidth={1.5}
+                                                color={colorScheme === "light" ? 'green' : "#ced4da"}
+                                            /></Link>
+                                    </Group>
+                                </Group>
+                                <Text mt={20} size="sm">
+                                    {i.summary}
+                                </Text>
+                            </Card>
+
 
 
                         )
