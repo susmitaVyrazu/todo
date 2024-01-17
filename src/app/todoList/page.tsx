@@ -1,5 +1,5 @@
 "use client"; // This is a client component 
-import React,{ useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 // import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button, Container, Group, Title, Card, Text, useMantineColorScheme, Input, TextInput, rem } from '@mantine/core';
@@ -8,9 +8,14 @@ import { Trash, MoonStars, Sun, Pencil } from 'tabler-icons-react';
 import styles from './page.module.css'
 
 const Page = () => {
-    const [data, setData] = useState<any>(
+    let allTasks = localStorage.getItem("tasks");
+    if (allTasks) {
+        allTasks = JSON.parse(allTasks);
+    }
+    console.log("allTasks", allTasks)
+    const [data, setData] = useState<any>(allTasks ||
         [
-            { id: 0, title: "Study", summary: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis incidunt unde, porro quod quaerat ut, rem minima esse a optio, accusamus soluta facilis? Id voluptates voluptatibus nesciunt, asperiores repudiandae consequuntur quasi fuga. Nemo repudiandae quis ab dicta at! Ipsum, sint."},
+            { id: 0, title: "Study", summary: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis incidunt unde, porro quod quaerat ut, rem minima esse a optio, accusamus soluta facilis? Id voluptates voluptatibus nesciunt, asperiores repudiandae consequuntur quasi fuga. Nemo repudiandae quis ab dicta at! Ipsum, sint." },
             { id: 1, title: "Practice", summary: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis incidunt unde, porro quod quaerat ut, rem minima esse a optio, accusamus soluta facilis? Id voluptates voluptatibus nesciunt, asperiores repudiandae consequuntur quasi fuga. Nemo repudiandae quis ab dicta at! Ipsum, sint." },
             { id: 2, title: "Implement", summary: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis incidunt unde, porro quod quaerat ut, rem minima esse a optio, accusamus soluta facilis? Id voluptates voluptatibus nesciunt, asperiores repudiandae consequuntur quasi fuga. Nemo repudiandae quis ab dicta at! Ipsum, sint.    " }
         ])
@@ -37,8 +42,11 @@ const Page = () => {
         setTitle("")
         setSummary("")
         setOpened(false);
-        console.log(data)
     }
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(data));
+    }, [data])
 
     function deleteTask(e: any) {
         console.log("iddddd", e)
@@ -113,7 +121,7 @@ const Page = () => {
 
                     {data.length ? data.map((i: any, j: number) => {
                         return (
-                            <>
+                            
                                 <Card key={j} shadow="sm" padding="lg" my={20} mt="md">
                                     <Group justify="space-between">
                                         <Text size="lg" className={styles.title}>
@@ -126,17 +134,17 @@ const Page = () => {
                                                 strokeWidth={2}
                                                 color={'maroon'}
                                             />
-                                            <Link 
-                                             href={{
-                                                pathname: '/todoList/${i.title}',
-                                                query: {
-                                                    title: i.title,
-                                                    summary: i.summary
-                                                }
-                                              }}>
+                                            <Link
+                                                href={{
+                                                    pathname: '/todoList/${i.title}',
+                                                    query: {
+                                                        title: i.title,
+                                                        summary: i.summary
+                                                    }
+                                                }}>
 
-                                            {/* //  href={`/todoList/${i.title}`}   */}
-                                            <Pencil
+                                                {/* //  href={`/todoList/${i.title}`}   */}
+                                                <Pencil
                                                     size={28}
                                                     strokeWidth={2}
                                                     color={'black'}
@@ -147,7 +155,7 @@ const Page = () => {
                                         {i.summary}
                                     </Text>
                                 </Card>
-                            </>
+                            
 
 
                         )
