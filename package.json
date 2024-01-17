@@ -5,20 +5,31 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/core": "^7.4.1",
+    "@mantine/form": "^7.4.1",
+    "@mantine/hooks": "^7.4.1",
+    "@mantine/modals": "^7.4.1",
+    "@netlify/plugin-nextjs": "^4.41.3",
+    "@tabler/icons-react": "^2.46.0",
+    "netlify-cli": "^17.14.0",
+    "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.4"
+    "tabler-icons-react": "^1.56.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@iconify/react": "^4.1.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.0.4",
+    "prisma": "^5.8.0",
+    "typescript": "^5"
   }
 }

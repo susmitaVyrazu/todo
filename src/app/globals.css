@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
@@ -104,4 +104,28 @@ a {
   html {
     color-scheme: dark;
   }
+} */
+
+.todo-container svg{
+  cursor: pointer;
+}
+.App{
+  display: flex;
+  justify-content: center;
+  height: 70vh;
+  align-items: center;
+}
+.App button{
+ width: 20rem;
+ height: 5rem;
+}
+.btns{
+  background-color: rgb(4, 107, 241) !important;
+  color: white ;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.btns:hover{
+  background-color: rgb(13, 79, 165) !important;
 }

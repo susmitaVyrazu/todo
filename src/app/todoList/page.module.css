@@ -107,6 +107,9 @@
 .logo {
   position: relative;
 }
+.title{
+   font-weight:800 !important;
+}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
