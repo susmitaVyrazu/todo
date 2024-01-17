@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 // import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button, Container, Group, Title, Card, Text, useMantineColorScheme, Input, TextInput, rem } from '@mantine/core';
-import { Trash, MoonStars, Sun, Pencil } from 'tabler-icons-react';
+import { Trash, MoonStars, Sun, Edit } from 'tabler-icons-react';
 // import { IconExclamationCircle } from '@tabler/icons-react';
 import styles from './page.module.css'
 
@@ -12,7 +12,6 @@ const Page = () => {
     if (allTasks) {
         allTasks = JSON.parse(allTasks);
     }
-    console.log("allTasks", allTasks)
     const [data, setData] = useState<any>(allTasks ||
         [
             { id: 0, title: "Study", summary: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis incidunt unde, porro quod quaerat ut, rem minima esse a optio, accusamus soluta facilis? Id voluptates voluptatibus nesciunt, asperiores repudiandae consequuntur quasi fuga. Nemo repudiandae quis ab dicta at! Ipsum, sint." },
@@ -127,12 +126,13 @@ const Page = () => {
                                         <Text size="lg" className={styles.title}>
                                             {i.title}
                                         </Text>
-                                        <Group>
+                                        <Group  align="center">
                                             <Trash
                                                 id={i.id} onClick={(event: any) => deleteTask(event)}
                                                 size={28}
-                                                strokeWidth={2}
-                                                color={'maroon'}
+                                                className="deletebtn"
+                                                strokeWidth={1.5}
+                                                color={colorScheme === "light" ? 'maroon' : "#ced4da"}
                                             />
                                             <Link
                                                 href={{
@@ -144,10 +144,10 @@ const Page = () => {
                                                 }}>
 
                                                 {/* //  href={`/todoList/${i.title}`}   */}
-                                                <Pencil
+                                                <Edit
                                                     size={28}
-                                                    strokeWidth={2}
-                                                    color={'black'}
+                                                    strokeWidth={1.5}
+                                                    color={colorScheme === "light" ? 'green' : "#ced4da"}
                                                 /></Link>
                                         </Group>
                                     </Group>
